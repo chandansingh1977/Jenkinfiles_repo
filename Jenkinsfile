@@ -1,5 +1,7 @@
 pipeline {
-    agent any
+    agent {
+        label 'install_jenkin'
+    }
 
     stages  {
     stage ('Build'){
