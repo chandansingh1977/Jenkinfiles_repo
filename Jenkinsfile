@@ -1,16 +1,16 @@
 pipeline {
     agent any
-environment {
-    TEST = "test_value"
-    TEST1 = "test_value1"
-}
+
     stages  {
     stage ('Build'){
+        environment {
+         BUILD_NAME = "my_build"
+        }
         steps {
            
             sh '''
             sleep 10
-            echo $TEST $TEST1
+            echo $TEST $BUILD_NAME
             '''
     }
         
@@ -19,7 +19,7 @@ environment {
         steps {
           sh '''
             #!/bin/bash
-            echo $TEST $TEST1
+            echo $TEST $BUILD_NAME
             sleep 5
             '''
         }
