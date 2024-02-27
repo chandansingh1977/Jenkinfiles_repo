@@ -1,13 +1,20 @@
 pipeline {
     agent none
-
+environment {
+    TEST = "test_value"
+    TEST1 = "test_value1"
+}
     stages  {
     stage ('Build'){
          agent {
         label 'install_jenkin'
     }
         steps {
-            sh 'sleep 5'
+            sh 
+            '''
+            sleep 10
+            echo $TEST $TEST1
+            '''
     }
         
 }
@@ -16,7 +23,7 @@ pipeline {
         steps {
             sh '''
             #!/bin/bash
-            ls -lrt
+            echo $TEST $TEST1
             sleep 5
             '''
         }
