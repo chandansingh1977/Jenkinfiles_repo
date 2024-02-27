@@ -3,7 +3,8 @@ pipeline {
 environment {
     TEST = "test_value"
 }
-parameters {name: 'Chandan_s' , defaultValue: 'input_chandan' , description: 'this is a string parameter'
+parameters {
+  string(name: 'Chandan_s' , defaultValue: 'input_chandan' , description: 'this is a string parameter')
 
  }
     stages  {
