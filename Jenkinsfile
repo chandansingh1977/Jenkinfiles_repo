@@ -1,16 +1,18 @@
 pipeline {
-    agent {
-        label 'install_jenkin'
-    }
+    agent none
 
     stages  {
     stage ('Build'){
+         agent {
+        label 'install_jenkin'
+    }
         steps {
             sh 'sleep 5'
     }
         
 }
     stage ('Test'){
+        agent any
         steps {
             sh '''
             #!/bin/bash
