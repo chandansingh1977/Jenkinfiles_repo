@@ -10,8 +10,8 @@ environment {
         label 'install_jenkin'
     }
         steps {
-            sh 
-            '''
+             
+            sh '''
             sleep 10
             echo $TEST $TEST1
             '''
@@ -21,8 +21,7 @@ environment {
     stage ('Test'){
         agent any
         steps {
-           '''
-            sh
+          sh '''
             #!/bin/bash
             echo $TEST $TEST1
             sleep 5
