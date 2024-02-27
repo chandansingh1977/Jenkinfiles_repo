@@ -21,7 +21,8 @@ environment {
     stage ('Test'){
         agent any
         steps {
-            sh '''
+           '''
+            sh
             #!/bin/bash
             echo $TEST $TEST1
             sleep 5
