@@ -3,27 +3,25 @@ pipeline {
 environment {
     TEST = "test_value"
 }
+parameters {name: 'Chandan_s' , defaultValue: 'input_chandan' , description: 'this is a string parameter'
+
+ }
     stages  {
     stage ('Build'){
-        environment {
-         BUILD_NAME = "my_build"
-        }
         steps {
            
             sh '''
             sleep 10
-            echo $TEST $BUILD_NAME
+            echo  $Chandan_s
             '''
     }
         
 }
     stage ('Test'){
         steps {
-          sh '''
-            #!/bin/bash
-            echo $TEST $BUILD_NAME
-            sleep 5
-            '''
+          script {
+              echo "${params.Chandan_s}"
+          }
         }
 
 
