@@ -10,9 +10,8 @@ pipeline {
            credintialsID: 'github' ]]])
           }      
     }
-  
-  
-             stage ('Build') {
+
+               stage ('Build') {
              steps {
                  sh '''
                  sleep 10
@@ -32,13 +31,11 @@ pipeline {
         steps {
              sh '''
              sleep 10
-             
-                 '''
+             '''
           }
       }  
  }
 
 }
-
 
 
