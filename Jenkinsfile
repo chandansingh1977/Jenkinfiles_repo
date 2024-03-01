@@ -14,30 +14,31 @@ pipeline {
      }
    
       stages  {
-      stage ('Build'){
-        steps {
-           
-            sh '''
-            sleep 10
-            echo  $Chandan_s
-            '''
+         stage ('Checkout'){
+          steps {
+           checkout([$class: 'GitSCM',
+           branches: [[name: '*/main']],
+           userRemoteConfigs: [[url: 'https://github.com/chandansingh1977/First_repository.git',
+           credintialsID: 'github' ]]])
+          }      
     }
-        
-}
-      stage ('Test'){
+  
+  
+             stage ('Build') {
+             steps {
+                 sh '''
+                 ls -lrt
+                  '''
+          }
+      }      
+        stage ('Test'){
         steps {
           script {
               echo "${params.Chandan_s}"
           }
+      }  
         }
-
-
-   }
-
-
  }
-
-
 
 }
 
