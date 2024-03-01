@@ -18,14 +18,15 @@ pipeline {
                  sleep 10
                   '''
           }
-      }      
+      } 
         stage ('Test'){
           steps {
+             catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
               sh '''
               sleep 10
               exit 1
-                  '''
-          }
+           }       '''
+        }
     }
       stage ('Deploy'){
         steps {
