@@ -46,9 +46,8 @@ parameters {
           when {
           expression {
             params.TEST == true
-          }
-          }
-         }
+           }
+        }
           steps {
              catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
               sh '''
@@ -57,13 +56,13 @@ parameters {
                  '''
            } 
           }
+          }
                 stage ('Test2') {
           when {
           expression {
             params.TEST == true
           }
-          }
-         }
+                   }
           steps {
              catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
               sh '''
@@ -74,7 +73,7 @@ parameters {
           }
         }
        }
-    
+      }
       stage ('Deploy'){
         when {
           expression {
