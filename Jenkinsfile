@@ -40,12 +40,14 @@ parameters {
                   '''
           }
       } 
-        stage ('Test') {
+      stage ('Multiple') {
+        parallel {
+        stage ('Test1') {
           when {
           expression {
             params.TEST == true
           }
-
+          }
          }
           steps {
              catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
@@ -54,8 +56,25 @@ parameters {
               exit 1
                  '''
            } 
+          }
+                stage ('Test2') {
+          when {
+          expression {
+            params.TEST == true
+          }
+          }
+         }
+          steps {
+             catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+              sh '''
+              sleep 10
+              exit 1
+                 '''
+           } 
+          }
         }
-    }
+       }
+    
       stage ('Deploy'){
         when {
           expression {
