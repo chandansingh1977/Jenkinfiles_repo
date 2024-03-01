@@ -1,8 +1,23 @@
 pipeline {
       agent any
-   
+
+parameters {
+ booleanParam(name: 'CHECKOUT', defaultValue: true, description: 'Toggle this value') 
+ booleanParam(name: 'BUILD', defaultValue: true, description: 'Toggle this value') 
+ booleanParam(name: 'TEST', defaultValue: true, description: 'Toggle this value') 
+ booleanParam(name: 'DEPLOY', defaultValue: false, description: 'Toggle this value') 
+
+ }
+  
       stages  {
          stage ('Checkout'){
+         when {
+          expression {
+            params.CHECKOUT == true
+          }
+
+         }
+         
           steps {
            checkout([$class: 'GitSCM',
            branches: [[name: '*/main']],
@@ -12,6 +27,13 @@ pipeline {
     }
 
                stage ('Build') {
+             when {
+          expression {
+            params.BUILD == true
+          }
+
+         }
+           
              steps {
                  sh '''
                  sleep 10
@@ -19,6 +41,12 @@ pipeline {
           }
       } 
         stage ('Test') {
+          when {
+          expression {
+            params.TEST == true
+          }
+
+         }
           steps {
              catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
               sh '''
@@ -29,6 +57,12 @@ pipeline {
         }
     }
       stage ('Deploy'){
+        when {
+          expression {
+            params.DEPLOY == true
+          }
+
+         }
         steps {
              sh '''
              sleep 10
