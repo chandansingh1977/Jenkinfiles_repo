@@ -1,5 +1,5 @@
 pipeline {
-    agent any
+      agent any
    
       stages  {
          stage ('Checkout'){
@@ -18,13 +18,14 @@ pipeline {
                   '''
           }
       } 
-        stage ('Test'){
+        stage ('Test') {
           steps {
              catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
               sh '''
               sleep 10
               exit 1
-           }       '''
+                 '''
+           } 
         }
     }
       stage ('Deploy'){
@@ -36,7 +37,5 @@ pipeline {
       }  
  }
 
-}
+}     
 
-
-}
