@@ -1,17 +1,5 @@
 pipeline {
     agent any
-    environment {
-    TEST = "test_value"
-}
-    parameters {
-     string(name: 'Chandan_s' , defaultValue: 'input_chandan' , description: 'this is a string parameter')
-     booleanParam(name: 'TOGGLE', defaultValue: true, description: 'Toggle this value')
- }
-     triggers{ 
-    
-       cron('*/59 * * * *')
-    
-     }
    
       stages  {
          stage ('Checkout'){
@@ -27,21 +15,29 @@ pipeline {
              stage ('Build') {
              steps {
                  sh '''
-                 ls -lrt
+                 sleep 10
                   '''
           }
       }      
         stage ('Test'){
+          steps {
+              sh '''
+              sleep 10
+              exit 1
+                  '''
+          }
+    }
+      stage ('Deploy'){
         steps {
-          script {
-              echo "${params.Chandan_s}"
+             sh '''
+             sleep 10
+             
+                 '''
           }
       }  
-        }
  }
 
 }
-
 
 
 
