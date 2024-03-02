@@ -9,6 +9,7 @@ pipeline {
 
                 sh '''
                 echo "$USERNAME $PASS"
+              '''
               }
 
           }
